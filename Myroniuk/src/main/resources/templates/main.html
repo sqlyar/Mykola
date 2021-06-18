@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Sort by result</h1>
+
+    <a th:href = "@{/sort/asc}" class="btn btn-primary btn-sm mb-3"> Sort by asc </a>
+
+    <a th:href = "@{/sort/desc}" class="btn btn-primary btn-sm mb-3"> Sort by desc </a>
+
+    <h1>Sort by argument</h1>
+
+    <a th:href = "@{/sortA/asc}" class="btn btn-primary btn-sm mb-3"> Sort by asc </a>
+
+    <a th:href = "@{/sortA/desc}" class="btn btn-primary btn-sm mb-3"> Sort by desc </a>
+
+    <div class="container">
+        <h2>Find result</h2>
+
+        <form action="#" th:action="@{/process}" th:object="${number}"
+              method="POST">
+            <input type="number" step="0.00001" th:field="*{num}"
+                   placeholder="number" class="form-control mb-4 col-4">
+
+            <button type="submit" class="btn btn-info col-2"> Find</button>
+        </form>
+    </div>
+
+    <br>
+
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                Argument</a>
+            </th>
+            <th>
+                Result</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="result : ${results}">
+            <td th:text="${result.argument}"></td>
+            <td th:text="${result.result}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
